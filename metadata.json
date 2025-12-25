@@ -1,0 +1,7 @@
+{
+  "name": "MedTerm Pro - 醫學系必備單字閃卡",
+  "description": "專為醫學生設計的專業醫學單字閃卡 App，具備基礎、常用、進階三種等級，並結合 Gemini AI 動態擴充字庫與專業發音。",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

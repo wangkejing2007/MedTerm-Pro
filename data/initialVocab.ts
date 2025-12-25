@@ -1,0 +1,125 @@
+
+import { Level, MedicalWord } from "../types";
+
+const advancedStarters: Partial<MedicalWord>[] = [
+  { word: "Acanthosis nigricans", kk: "/ˌæk.ænˈθoʊ.sɪs ˈnaɪ.ɡrɪ.kænz/", chinese: "黑色棘皮症", englishDef: "A skin condition characterized by dark, velvety patches in body folds.", example: "Acanthosis nigricans is often a sign of insulin resistance." },
+  { word: "Adenocarcinoma", kk: "/ˌæd.ə.noʊˌkɑːr.səˈnoʊ.mə/", chinese: "腺癌", englishDef: "A type of cancer that forms in glandular structures.", example: "The patient was diagnosed with pulmonary adenocarcinoma." },
+  { word: "Aneurysm", kk: "/ˈæn.jə.rɪ.zəm/", chinese: "動脈瘤", englishDef: "An excessive localized enlargement of an artery caused by a weakening of the artery wall.", example: "A cerebral aneurysm can be life-threatening if it ruptures." },
+  { word: "Ankylosing spondylitis", kk: "/ˌæŋ.kəˈloʊ.sɪŋ ˌspɑːn.dəˈlaɪ.t̬əs/", chinese: "強直性脊椎炎", englishDef: "A long-term inflammation of the joints of the spine.", example: "Physical therapy is crucial for patients with ankylosing spondylitis." },
+  { word: "Arteriovenous malformation", kk: "/ɑːrˌtɪr.i.oʊˈviː.nəs ˌmæl.fɔːrˈmeɪ.ʃən/", chinese: "動靜脈畸形", englishDef: "An abnormal connection between arteries and veins, bypassing the capillary system.", example: "Brain AVMs are usually congenital." },
+  { word: "Atherosclerosis", kk: "/ˌæθ.er.oʊ.skleˈroʊ.sɪs/", chinese: "動脈粥樣硬化", englishDef: "The build-up of fats, cholesterol and other substances in and on your artery walls.", example: "Atherosclerosis is a major cause of cardiovascular disease." },
+  { word: "Autoimmune", kk: "/ˌɑː.t̬oʊ.ɪˈmjuːn/", chinese: "自身免疫的", englishDef: "Relating to disease caused by antibodies or lymphocytes produced against substances naturally present in the body.", example: "Systemic lupus erythematosus is a chronic autoimmune disease." },
+  { word: "Bronchiectasis", kk: "/ˌbrɑːŋ.kiˈek.tə.sɪs/", chinese: "支氣管擴張症", englishDef: "Chronic enlargement of parts of the airways of the lung.", example: "CT scans showed signs of bronchiectasis in the lower lobes." },
+  { word: "Cardiomyopathy", kk: "/ˌkɑːr.di.oʊ.maɪˈɑː.pə.θi/", chinese: "心肌病變", englishDef: "A hereditary or acquired disease of the heart muscle.", example: "Hypertrophic cardiomyopathy often goes undiagnosed." },
+  { word: "Cholecystectomy", kk: "/ˌkoʊ.li.sɪsˈtek.tə.mi/", chinese: "膽囊切除術", englishDef: "Surgical removal of the gallbladder.", example: "Laparoscopic cholecystectomy is now the standard procedure." },
+  { word: "Coagulopathy", kk: "/koʊˌæɡ.jəˈlɑː.pə.θi/", chinese: "凝血障礙", englishDef: "A condition in which the blood's ability to coagulate is impaired.", example: "The trauma patient developed a consumption coagulopathy." },
+  { word: "Demyelination", kk: "/diːˌmaɪ.ə.lɪˈneɪ.ʃən/", chinese: "去髓鞘作用", englishDef: "Damage to the myelin sheath of neurons.", example: "Multiple sclerosis involves widespread demyelination in the CNS." },
+  { word: "Dysesthesia", kk: "/ˌdɪs.esˈθiː.ʒə/", chinese: "感覺異常", englishDef: "An abnormal unpleasant sensation felt when touched.", example: "Post-herpetic neuralgia often causes severe dysesthesia." },
+  { word: "Echocardiography", kk: "/ˌek.oʊ.kɑːr.diˈɑː.ɡrə.fi/", chinese: "心臟超音波檢查", englishDef: "The use of ultrasound waves to investigate the action of the heart.", example: "Echocardiography revealed a mitral valve prolapse." },
+  { word: "Encephalopathy", kk: "/enˌsef.əˈlɑː.pə.θi/", chinese: "腦病變", englishDef: "Any disease or condition that affects the function or structure of your brain.", example: "Hepatic encephalopathy can lead to confusion and coma." },
+  { word: "Endometriosis", kk: "/ˌen.doʊ.miː.triˈoʊ.sɪs/", chinese: "子宮內膜異位症", englishDef: "A condition where tissue similar to the lining of the uterus grows outside it.", example: "Endometriosis is a common cause of pelvic pain." },
+  { word: "Erythropoietin", kk: "/ɪˌrɪθ.roʊˈpɔɪ.ə.tɪn/", chinese: "紅血球生成素", englishDef: "A hormone secreted by the kidneys that increases the rate of production of red blood cells.", example: "Patients with chronic kidney disease may need synthetic erythropoietin." },
+  { word: "Fibrillation", kk: "/ˌfɪb.rəˈleɪ.ʃən/", chinese: "纖顫（如房顫）", englishDef: "Act of quivering or spontaneous contraction of individual muscle fibers.", example: "Atrial fibrillation increases the risk of stroke." },
+  { word: "Glomerulonephritis", kk: "/ɡloʊˌmer.jə.loʊ.neˈfraɪ.t̬əs/", chinese: "腎絲球腎炎", englishDef: "Acute inflammation of the kidney, typically caused by an immune response.", example: "Post-streptococcal glomerulonephritis usually affects children." },
+  { word: "Gluconeogenesis", kk: "/ˌɡluː.koʊ.niː.oʊˈdʒen.ə.sɪs/", chinese: "糖質新生", englishDef: "Formation of glucose from non-carbohydrate sources.", example: "Gluconeogenesis is vital during prolonged fasting." },
+  { word: "Hematopoiesis", kk: "/ˌhiː.mə.toʊ.pɔɪˈiː.sɪs/", chinese: "造血作用", englishDef: "The production of all types of blood cells including formation, development, and differentiation.", example: "Hematopoiesis occurs primarily in the bone marrow." },
+  { word: "Hemochromatosis", kk: "/ˌhiː.moʊ.kroʊ.məˈtoʊ.sɪs/", chinese: "血鐵沉積症", englishDef: "Too much iron builds up in your body.", example: "Hereditary hemochromatosis can damage the liver and heart." },
+  { word: "Hydronephrosis", kk: "/ˌhaɪ.droʊ.neˈfroʊ.sɪs/", chinese: "腎積水", englishDef: "Distension and dilation of the renal pelvis, usually due to obstruction.", example: "Ultrasound confirmed bilateral hydronephrosis due to BPH." },
+  { word: "Hyperkalemia", kk: "/ˌhaɪ.pɚ.keˈliː.mi.ə/", chinese: "高鉀血症", englishDef: "A potassium level in your blood that's higher than normal.", example: "Hyperkalemia is a medical emergency that can lead to cardiac arrest." },
+  { word: "Idiopathic", kk: "/ˌɪd.i.əˈpæθ.ɪk/", chinese: "特發性的（原因不明的）", englishDef: "Relating to any disease or condition which arises spontaneously or for which the cause is unknown.", example: "He was diagnosed with idiopathic pulmonary fibrosis." },
+  { word: "Immunosuppression", kk: "/ˌɪm.jə.noʊ.səˈpreʃ.ən/", chinese: "免疫抑制", englishDef: "Reduction of the activation or efficacy of the immune system.", example: "Transplant recipients require lifelong immunosuppression." },
+  { word: "Intussusception", kk: "/ˌɪn.tə.səˈsep.ʃən/", chinese: "腸套疊", englishDef: "A condition in which one segment of intestine telescopes into the next.", example: "Intussusception is a common cause of bowel obstruction in infants." },
+  { word: "Ischemia", kk: "/ɪˈskiː.mi.ə/", chinese: "局部缺血", englishDef: "An inadequate blood supply to an organ or part of the body, especially the heart muscles.", example: "Myocardial ischemia can cause stable angina." },
+  { word: "Ketoacidosis", kk: "/ˌkiː.t̬oʊ.æs.əˈdoʊ.sɪs/", chinese: "酮酸中毒", englishDef: "A serious complication of diabetes where the body produces excess blood acids (ketones).", example: "Diabetic ketoacidosis requires immediate hospitalization." },
+  { word: "Leukocytopenia", kk: "/ˌluː.koʊ.saɪ.t̬oʊˈpiː.ni.ə/", chinese: "白血球減少症", englishDef: "A reduction in the number of white cells in the blood.", example: "Chemotherapy often leads to temporary leukocytopenia." },
+  { word: "Lymphadenopathy", kk: "/lɪmˌfæd.əˈnɑː.pə.θi/", chinese: "淋巴結病變", englishDef: "A disease affecting the lymph nodes.", example: "Generalized lymphadenopathy was noted during the physical exam." },
+  { word: "Malignancy", kk: "/məˈlɪɡ.nən.si/", chinese: "惡性腫瘤", englishDef: "The presence of cancerous cells that have the ability to spread to other sites in the body.", example: "The biopsy showed no signs of malignancy." },
+  { word: "Mesothelioma", kk: "/ˌmez.oʊ.θiː.liˈoʊ.mə/", chinese: "間皮瘤", englishDef: "A cancer of mesothelial tissue, associated especially with exposure to asbestos.", example: "Pleural mesothelioma is often linked to asbestos exposure." },
+  { word: "Myelodysplastic", kk: "/ˌmaɪ.ə.loʊ.dɪsˈplæs.tɪk/", chinese: "骨髓化生不良的", englishDef: "Relating to a group of cancers in which immature blood cells in the bone marrow do not mature.", example: "Myelodysplastic syndromes can progress to acute leukemia." },
+  { word: "Nefrotoxicity", kk: "/ˌnef.roʊ.tɑːkˈsɪs.ə.t̬i/", chinese: "腎毒性", englishDef: "Toxicity in the kidneys.", example: "Some antibiotics are known for their nephrotoxicity." },
+  { word: "Oliguria", kk: "/ˌɑː.lɪˈɡjʊr.i.ə/", chinese: "少尿症", englishDef: "The production of abnormally small amounts of urine.", example: "The patient entered a state of oliguria following the surgery." },
+  { word: "Osteoporosis", kk: "/ˌɑː.sti.oʊ.pəˈroʊ.sɪs/", chinese: "骨質疏鬆症", englishDef: "A condition in which bones become weak and brittle.", example: "Postmenopausal women are at higher risk for osteoporosis." },
+  { word: "Pancytopenia", kk: "/ˌpæn.saɪ.t̬oʊˈpiː.ni.ə/", chinese: "全血球減少症", englishDef: "Deficiency of all three cellular components of the blood.", example: "Aplastic anemia results in severe pancytopenia." },
+  { word: "Pathophysiology", kk: "/ˌpæθ.oʊ.fɪz.iˈɑː.lə.dʒi/", chinese: "病理生理學", englishDef: "The functional changes that accompany a particular syndrome or disease.", example: "Understanding the pathophysiology of asthma is key to treatment." },
+  { word: "Peritonitis", kk: "/ˌper.ɪ.təˈnaɪ.t̬əs/", chinese: "腹膜炎", englishDef: "Inflammation of the peritoneum, typically caused by bacterial infection.", example: "Peritonitis is a potential complication of peritoneal dialysis." },
+  { word: "Pheochromocytoma", kk: "/ˌfiː.oʊ.kroʊ.moʊ.saɪˈtoʊ.mə/", chinese: "嗜鉻細胞瘤", englishDef: "A hormone-secreting tumor that can occur in the adrenal glands.", example: "Pheochromocytoma can cause episodic hypertension." },
+  { word: "Pneumothorax", kk: "/ˌnuː.moʊˈθɔːr.æks/", chinese: "氣胸", englishDef: "The presence of air or gas in the cavity between the lungs and the chest wall, causing collapse of the lung.", example: "Spontaneous pneumothorax often occurs in tall, thin young men." },
+  { word: "Polycythemia", kk: "/ˌpɑː.li.saɪˈθiː.mi.ə/", chinese: "紅血球增多症", englishDef: "An abnormally increased concentration of hemoglobin in the blood.", example: "Polycythemia vera is a slow-growing blood cancer." },
+  { word: "Preeclampsia", kk: "/ˌpriː.ɪˈklæmp.si.ə/", chinese: "子癇前症", englishDef: "A condition in pregnancy characterized by high blood pressure and protein in the urine.", example: "Severe preeclampsia can lead to maternal and fetal complications." },
+  { word: "Proteinuria", kk: "/ˌproʊ.tiːˈnjʊr.i.ə/", chinese: "蛋白尿", englishDef: "The presence of abnormal quantities of protein in the urine.", example: "Proteinuria is often the first sign of diabetic nephropathy." },
+  { word: "Radiotherapy", kk: "/ˌreɪ.di.oʊˈθer.ə.pi/", chinese: "放射線療法", englishDef: "The treatment of disease using X-rays or similar forms of radiation.", example: "The patient completed six weeks of adjuvant radiotherapy." },
+  { word: "Rhabdomyolysis", kk: "/ˌræb.doʊ.maɪˈɑː.lə.sɪs/", chinese: "橫紋肌溶解症", englishDef: "A breakdown of muscle tissue that releases a damaging protein into the blood.", example: "Extreme exercise can sometimes trigger rhabdomyolysis." },
+  { word: "Scleroderma", kk: "/ˌskler.əˈdɝː.mə/", chinese: "硬皮症", englishDef: "Chronic hardening and tightening of the skin and connective tissues.", example: "Systemic scleroderma can affect internal organs like the lungs." },
+  { word: "Splenomegaly", kk: "/ˌsplen.oʊˈmeɡ.ə.li/", chinese: "脾臟腫大", englishDef: "Abnormal enlargement of the spleen.", example: "Splenomegaly was detected during deep palpation of the abdomen." },
+  { word: "Steatohepatitis", kk: "/ˌstiː.ə.toʊˌhep.əˈtaɪ.t̬əs/", chinese: "脂肪性肝炎", englishDef: "Type of fatty liver disease, characterized by inflammation of the liver with concurrent fat accumulation.", example: "Nonalcoholic steatohepatitis (NASH) can progress to cirrhosis." },
+  { word: "Syncope", kk: "/ˈsɪŋ.kə.pi/", chinese: "暈厥", englishDef: "Temporary loss of consciousness caused by a fall in blood pressure.", example: "Vasovagal syncope is the most common cause of fainting." },
+  { word: "Tachycardia", kk: "/ˌtæk.ɪˈkɑːr.di.ə/", chinese: "心跳過速", englishDef: "An abnormally rapid heart rate.", example: "The patient presented with sinus tachycardia due to fever." },
+  { word: "Thrombocytopenia", kk: "/ˌθrɑːm.boʊ.saɪ.t̬oʊˈpiː.ni.ə/", chinese: "血小板減少症", englishDef: "Deficiency of platelets in the blood.", example: "Heparin-induced thrombocytopenia is a serious clinical concern." },
+  { word: "Thyrotoxicosis", kk: "/ˌθaɪ.roʊ.tɑːk.sɪˈkoʊ.sɪs/", chinese: "甲狀腺毒症", englishDef: "The condition that results from excessive thyroid hormone in the body.", example: "Graves' disease is the leading cause of thyrotoxicosis." },
+  { word: "Tracheostomy", kk: "/ˌtreɪ.kiˈɑː.stə.mi/", chinese: "氣管切開術", englishDef: "A medical procedure that involves creating an opening in the neck in order to place a tube into a person's windpipe.", example: "Long-term ventilated patients often require a tracheostomy." },
+  { word: "Urolithiasis", kk: "/ˌjʊr.oʊ.lɪˈθaɪ.ə.sɪs/", chinese: "尿路結石症", englishDef: "The process of forming stones in the kidney, bladder, and/or urethra.", example: "Adequate hydration can help prevent urolithiasis." },
+  { word: "Vasculitis", kk: "/ˌvæs.kjəˈlaɪ.t̬əs/", chinese: "血管炎", englishDef: "Inflammation of the blood vessels.", example: "ANCA-associated vasculitis can lead to rapidly progressive glomerulonephritis." },
+  { word: "Xerostomia", kk: "/ˌzɪr.oʊˈstoʊ.mi.ə/", chinese: "口腔乾燥症", englishDef: "Abnormal dryness of the mouth due to insufficient secretions of saliva.", example: "Xerostomia is a common side effect of many medications." },
+  { word: "Zoonosis", kk: "/ˌzoʊ.əˈnoʊ.sɪs/", chinese: "人畜共通傳染病", englishDef: "A disease that can be transmitted to humans from animals.", example: "Rabies is a well-known viral zoonosis." },
+  { word: "Acalculia", kk: "/ˌeɪ.kælˈkjuː.li.ə/", chinese: "計算不能症", englishDef: "Acquired impairment in which patients have difficulty performing simple mathematical tasks.", example: "Acalculia can occur after damage to the left parietal lobe." },
+  { word: "Blepharospasm", kk: "/ˈblef.ə.roʊˌspæz.əm/", chinese: "眼瞼痙攣", englishDef: "Involuntary tight closure of the eyelids.", example: "Botulinum toxin injections are used to treat blepharospasm." },
+  { word: "Cheyne-Stokes respiration", kk: "/ˌtʃeɪn ˈstoʊks ˌres.pəˈreɪ.ʃən/", chinese: "陳施氏呼吸（潮式呼吸）", englishDef: "An abnormal pattern of breathing characterized by progressively deeper, and sometimes faster, breathing followed by a gradual decrease that results in a temporary stop in breathing.", example: "Cheyne-Stokes respiration is often seen in severe heart failure." },
+  { word: "Diverticulitis", kk: "/ˌdaɪ.vɚ.tɪk.jəˈlaɪ.t̬əs/", chinese: "憩室炎", englishDef: "Inflammation or infection of one or more small pouches in the digestive tract.", example: "Acute diverticulitis typically causes left lower quadrant pain." },
+  { word: "Exophthalmos", kk: "/ˌek.sɑːfˈθæl.məs/", chinese: "突眼症", englishDef: "Abnormal protrusion of the eyeball or eyeballs.", example: "Exophthalmos is a hallmark sign of Graves' ophthalmopathy." },
+  { word: "Fibromyalgia", kk: "/ˌfaɪ.broʊ.maɪˈæl.dʒə/", chinese: "纖維肌痛症", englishDef: "Widespread muscle pain and tenderness.", example: "Fibromyalgia is often accompanied by fatigue and sleep issues." },
+  { word: "Gastroparesis", kk: "/ˌɡæs.troʊ.pəˈriː.sɪs/", chinese: "胃輕癱", englishDef: "A condition that affects the stomach muscles and prevents proper stomach emptying.", example: "Diabetic gastroparesis can make blood sugar control difficult." },
+  { word: "Hemophthalmos", kk: "/ˌhiː.mɑːfˈθæl.məs/", chinese: "眼球積血", englishDef: "Effusion of blood into the eyeball.", example: "Traumatic hemophthalmos requires urgent ophthalmological evaluation." },
+  { word: "Islet cell tumor", kk: "/ˈaɪ.lət sel ˈtuː.mɚ/", chinese: "胰島細胞瘤", englishDef: "A tumor that grows from the islet cells in the pancreas.", example: "An insulinoma is a type of functioning islet cell tumor." },
+  { word: "Jaundice", kk: "/ˈdʒɑːn.dɪs/", chinese: "黃疸", englishDef: "Yellowing of the skin and the whites of the eyes caused by an accumulation of bile pigment (bilirubin) in the blood.", example: "Obstructive jaundice can result from a gallstone in the common bile duct." },
+  { word: "Kyphosis", kk: "/kaɪˈfoʊ.sɪs/", chinese: "脊椎後凸（駝背）", englishDef: "Excessive outward curvature of the spine, causing hunching of the back.", example: "Scheuermann's disease is a common cause of adolescent kyphosis." },
+  { word: "Laryngospasm", kk: "/ləˈrɪŋ.ɡoʊ.spæz.əm/", chinese: "喉痙攣", englishDef: "A brief spasm of the vocal cords that temporarily makes it difficult to speak or breathe.", example: "Laryngospasm can occur during extubation in anesthesia." },
+  { word: "Myasthenia gravis", kk: "/ˌmaɪ.əsˈθiː.ni.ə ˈɡræv.ɪs/", chinese: "重症肌無力", englishDef: "A condition causing abnormal muscle weakness.", example: "Ptosis is often the presenting symptom of myasthenia gravis." },
+  { word: "Neurofibromatosis", kk: "/ˌnʊr.oʊ.faɪ.broʊ.məˈtoʊ.sɪs/", chinese: "神經纖維瘤病", englishDef: "A genetic disorder that causes tumors to form on nerve tissue.", example: "Café-au-lait spots are characteristic of neurofibromatosis type 1." },
+  { word: "Otosclerosis", kk: "/ˌoʊ.t̬oʊ.skleˈroʊ.sɪs/", chinese: "耳硬化症", englishDef: "An inherited disorder that causes hearing loss due to the ear's inability to amplify sound.", example: "Otosclerosis affects the stapes bone in the middle ear." },
+  { word: "Psoriasis", kk: "/səˈraɪ.ə.sɪs/", chinese: "乾癬", englishDef: "A condition in which skin cells build up and form scales and itchy, dry patches.", example: "Plaque psoriasis is the most common form of the disease." },
+  { word: "Quadrantanopia", kk: "/ˌkwɑː.drən.təˈnoʊ.pi.ə/", chinese: "四分之一視野缺損", englishDef: "Loss of vision in a quarter of the visual field.", example: "Temporal lobe lesions can cause superior quadrantanopia." },
+  { word: "Retinopathy", kk: "/ˌret.ɪnˈɑː.pə.θi/", chinese: "視網膜病變", englishDef: "Disease of the retina which results in impairment or loss of vision.", example: "Diabetic retinopathy is a leading cause of blindness in adults." },
+  { word: "Spondylolisthesis", kk: "/ˌspɑːn.də.loʊ.lɪsˈθiː.sɪs/", chinese: "脊椎滑脫症", englishDef: "A spinal condition that affects the lower vertebrae.", example: "Spondylolisthesis can cause compression of nerve roots." },
+  { word: "Thoracentesis", kk: "/ˌθɔːr.ə.senˈtiː.sɪs/", chinese: "胸腔穿刺術", englishDef: "Procedure to remove fluid or air from around the lungs.", example: "Diagnostic thoracentesis was performed to evaluate the pleural effusion." },
+  { word: "Uveitis", kk: "/ˌjuː.viˈaɪ.t̬əs/", chinese: "葡萄膜炎", englishDef: "Inflammation of the uvea, the middle layer of the eye.", example: "Anterior uveitis often presents with eye pain and redness." },
+  { word: "Ventricular tachycardia", kk: "/venˈtrɪk.jə.lɚ ˌtæk.ɪˈkɑːr.di.ə/", chinese: "心室頻脈", englishDef: "A fast heart rate that starts in the heart's lower chambers.", example: "Sustained ventricular tachycardia is a life-threatening arrhythmia." },
+  { word: "Wernicke encephalopathy", kk: "/ˌvɝː.nɪ.ki enˌsef.əˈlɑː.pə.θi/", chinese: "韋尼克氏腦病變", englishDef: "A neurological disorder caused by thiamine deficiency.", example: "Wernicke encephalopathy is common in chronic alcoholics." },
+  { word: "Xanthoma", kk: "/zænˈθoʊ.mə/", chinese: "黃色瘤", englishDef: "A condition in which fatty growths develop underneath the skin.", example: "Eruptive xanthomas are associated with severe hypertriglyceridemia." },
+  { word: "Yersiniosis", kk: "/jɚˌsɪn.iˈoʊ.sɪs/", chinese: "耶爾辛氏菌病", englishDef: "An infection caused by eating raw or undercooked pork contaminated with Yersinia bacteria.", example: "Yersiniosis can mimic acute appendicitis." },
+  { word: "Zellweger syndrome", kk: "/ˈzel.veɡ.ɚ ˈsɪn.droʊm/", chinese: "塞維格氏症候群", englishDef: "A rare congenital disorder characterized by the reduction or absence of functional peroxisomes.", example: "Zellweger syndrome is the most severe of the peroxisome biogenesis disorders." }
+];
+
+const generatePlaceholder = (level: Level): MedicalWord[] => {
+  const starters: Record<Level, Partial<MedicalWord>[]> = {
+    [Level.BASIC]: [
+      { word: "Anatomy", kk: "/əˈnæt.ə.mi/", chinese: "解剖學", englishDef: "The study of the structure of living things.", example: "Anatomy is a fundamental subject in medical school." },
+      { word: "Stethoscope", kk: "/ˈsteθ.ə.skoʊp/", chinese: "聽診器", englishDef: "An instrument used for listening to the heart or lungs.", example: "The doctor used a stethoscope to listen to the patient's chest." },
+      { word: "Fracture", kk: "/ˈfræk.tʃɚ/", chinese: "骨折", englishDef: "The cracking or breaking of a hard object or material, typically a bone.", example: "The X-ray confirmed a small fracture in his radius." },
+      { word: "Insulin", kk: "/ˈɪn.sə.lɪn/", chinese: "胰島素", englishDef: "A hormone produced in the pancreas which regulates the amount of glucose in the blood.", example: "Diabetic patients may need daily insulin injections." }
+    ],
+    [Level.COMMON]: [
+      { word: "Biopsy", kk: "/ˈbaɪ.ɑːp.si/", chinese: "切片檢查", englishDef: "An examination of tissue removed from a living body to discover the presence, cause, or extent of a disease.", example: "The surgeon performed a biopsy to determine if the tumor was malignant." },
+      { word: "Metastasis", kk: "/məˈtæs.tə.sɪs/", chinese: "轉移", englishDef: "The development of secondary malignant growths at a distance from a primary site of cancer.", example: "Aggressive cancers are known for their high risk of metastasis." },
+      { word: "Anesthesia", kk: "/ˌæn.əsˈθiː.ʒə/", chinese: "麻醉", englishDef: "Insensitivity to pain, especially as artificially induced by the administration of gases or the injection of drugs.", example: "The patient was put under general anesthesia before the surgery." }
+    ],
+    [Level.ADVANCED]: advancedStarters
+  };
+
+  const base = starters[level] || [];
+  return base.map((w, idx) => ({
+    id: `${level}-${idx}`,
+    word: w.word!,
+    kk: w.kk!,
+    chinese: w.chinese!,
+    englishDef: w.englishDef!,
+    example: w.example!,
+    level,
+    mastered: false
+  }));
+};
+
+export const INITIAL_VOCAB: MedicalWord[] = [
+  ...generatePlaceholder(Level.BASIC),
+  ...generatePlaceholder(Level.COMMON),
+  ...generatePlaceholder(Level.ADVANCED),
+];
